@@ -1,5 +1,7 @@
 package com.tatsu73.aroundimageedittextlibrary;
 
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -23,9 +25,14 @@ public class AroundImageEditText extends FrameLayout{
     private Context tContext;
     private EditText tEditText;
     private ImageView tImageView;
-    private static final int DEFAULT_BACKGROUND_COLOR = Color.argb(255, 255, 255, 255);
-    private static final int DEFAULT_PREIMAGE_SOURCE = R.drawable
-
+    private int firstColor;
+    private int secondColor;
+    private int firstImage;
+    private int secondImage;
+    private static final int DEFAULT_FIRST_BACKGROUND_COLOR = Color.argb(255, 255, 0, 0);
+    private static final int DEFAULT_SECOND_BACKGROUND_COLOR = Color.argb(255, 0, 255, 0);
+    private static final int DEFAULT_FIRST_IMAGE_SOURCE = R.drawable.ic_close_grey_18dp;
+    private static final int DEFAULT_SECOND_IMAGE_SOURCE = R.drawable.ic_check_grey_18dp;
 
 
     public AroundImageEditText(Context context, AttributeSet attrs) {
@@ -35,16 +42,12 @@ public class AroundImageEditText extends FrameLayout{
     }
 
     private void setAttribute(AttributeSet attrs){
-        final TypedArray typedArray = tContext.obtainStyledAttributes(attrs, R.styleable.AroundImageEditText);
 
-        final int defaultPadding = (int) TypedValue.applyDimension();
-        final int paddingLeft = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingLeft, defaultPadding);
-        final int paddingTop = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingTop, 0);
-        final int paddingRight = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingRight, 0);
-        final int paddingBottom = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingBottom, 0);
-        final
-
-
+        TypedArray typedArray = tContext.obtainStyledAttributes(attrs, R.styleable.AroundImageEditText);
+        firstColor = typedArray.getColor(R.styleable.AroundImageEditText_aietFirstImageBackground, DEFAULT_FIRST_BACKGROUND_COLOR);
+        secondColor = typedArray.getColor(R.styleable.AroundImageEditText_aietFirstImageBackground, DEFAULT_SECOND_BACKGROUND_COLOR);
+        firstImage = typedArray.getResourceId(R.styleable.AroundImageEditText_aietFirstImage, DEFAULT_FIRST_IMAGE_SOURCE);
+        secondImage = typedArray.getResourceId(R.styleable.AroundImageEditText_aietFirstImage, DEFAULT_SECOND_IMAGE_SOURCE);
 
         typedArray.recycle();
     }
@@ -63,10 +66,31 @@ public class AroundImageEditText extends FrameLayout{
 
             setEditText((EditText) child);
         }
-        super.addView(child,index,layoutParams);
+        super.addView(child, index, layoutParams);
     }
 
 
+    private void moveImage(ImageView target, float degree, float distance,Boolean focus){
+
+        float toX = (float) ( distance * Math.cos( Math.toRadians( degree ) ) );
+        float toY = (float) ( distance * Math.sin( Math.toRadians( degree ) ) );
+
+        PropertyValuesHolder holderX = PropertyValuesHolder.ofFloat("translationX", 0f, toX);
+        PropertyValuesHolder holderY = PropertyValuesHolder.ofFloat( "translationY", 0f, toY );
+        PropertyValuesHolder holderRotaion = PropertyValuesHolder.ofFloat( "rotation", 0f, 360f );
+
+        ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(
+                target, holderX, holderY, holderRotaion);
+
+        objectAnimator.setDuration( 700 );
+
+
+        objectAnimator.start();
+    }
+
+    public void changeImage(Boolean condition){
+
+    }
     /*
     private float[] getImageSize(ImageView imageView){
         float[] floats = new float[1];
@@ -106,7 +130,9 @@ public class AroundImageEditText extends FrameLayout{
 
     }
 
-
+    private void setImage(ImageView ImageView, int resId){
+        ImageView.setImageResource(resId);
+    }
 
 
 }
