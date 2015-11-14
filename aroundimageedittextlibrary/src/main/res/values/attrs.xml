@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="AroundImageEditText" >
+        <attr name="aietPadding" format="dimension|reference"></attr>
+        <attr name="aietPaddingTop" format="dimension|reference"></attr>
+        <attr name="aietPaddingRight" format="dimension|reference"></attr>
+        <attr name="aietPaddingBottom" format="dimension|reference"></attr>
+        <attr name="aietPaddingLeft" format="dimension|reference"></attr>
+        <attr name="aietImageBackground" format="color|reference"></attr>
+        <attr name="aietImage" format="reference"></attr>
+        <attr name="aietType">
+            <enum name="" value=""></enum>
+            <enum name="" value=""></enum>
+        </attr>
 
+
+        <attr name="aiet" format=""></attr>
+
+    </declare-styleable>
 </resources>
