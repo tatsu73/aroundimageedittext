@@ -2,6 +2,7 @@ package com.tatsu73.aroundimageedittextlibrary;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,9 +20,13 @@ import android.widget.ImageView;
  */
 public class AroundImageEditText extends FrameLayout{
 
-    Context tContext;
-    EditText tEditText;
-    ImageView tImageView;
+    private Context tContext;
+    private EditText tEditText;
+    private ImageView tImageView;
+    private static final int DEFAULT_BACKGROUND_COLOR = Color.argb(255, 255, 255, 255);
+    private static final int DEFAULT_PREIMAGE_SOURCE = R.drawable
+
+
 
     public AroundImageEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -37,6 +42,8 @@ public class AroundImageEditText extends FrameLayout{
         final int paddingTop = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingTop, 0);
         final int paddingRight = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingRight, 0);
         final int paddingBottom = typedArray.getDimensionPixelSize(R.styleable.AroundImageEditText_aietPaddingBottom, 0);
+        final
+
 
 
         typedArray.recycle();
