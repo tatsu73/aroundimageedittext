@@ -70,27 +70,21 @@ public class AroundImageEditText extends FrameLayout{
     }
 
 
-    private void moveImage(ImageView target, float degree, float distance,Boolean focus){
-
-        float toX = (float) ( distance * Math.cos( Math.toRadians( degree ) ) );
-        float toY = (float) ( distance * Math.sin( Math.toRadians( degree ) ) );
-
+    private void moveImage(ImageView target, float toX){
         PropertyValuesHolder holderX = PropertyValuesHolder.ofFloat("translationX", 0f, toX);
-        PropertyValuesHolder holderY = PropertyValuesHolder.ofFloat( "translationY", 0f, toY );
-        PropertyValuesHolder holderRotaion = PropertyValuesHolder.ofFloat( "rotation", 0f, 360f );
+        PropertyValuesHolder holderAround = PropertyValuesHolder.ofFloat( "rotation", 0f, 360f );
 
         ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(
-                target, holderX, holderY, holderRotaion);
+                target, holderX,holderAround);
 
         objectAnimator.setDuration( 700 );
-
-
         objectAnimator.start();
     }
 
-    public void changeImage(Boolean condition){
-
+    public void changeImage(ImageView target){
+        
     }
+
     /*
     private float[] getImageSize(ImageView imageView){
         float[] floats = new float[1];
@@ -134,5 +128,8 @@ public class AroundImageEditText extends FrameLayout{
         ImageView.setImageResource(resId);
     }
 
-
+    private float getEditTextSize(EditText editText){
+        float editSize = editText.getWidth();
+        return  editSize;
+    }
 }
