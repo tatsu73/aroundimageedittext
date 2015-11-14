@@ -63,7 +63,6 @@ public class AroundImageEditText extends FrameLayout{
             }
         });
         addView(tImageView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-
         typedArray.recycle();
     }
 
@@ -76,7 +75,6 @@ public class AroundImageEditText extends FrameLayout{
             final LayoutParams lp = new LayoutParams(layoutParams);
             lp.gravity =Gravity.CENTER_VERTICAL;
             lp.leftMargin = tImageView.getWidth()/2;
-            //lp.leftMargin = tImageView.getWidth()/2;
             layoutParams = lp;
             setEditText((EditText) child);
         }
@@ -101,18 +99,15 @@ public class AroundImageEditText extends FrameLayout{
             @Override
             public void onAnimationStart(Animator animation) {
             }
-
             @Override
             public void onAnimationCancel(Animator animation) {
             }
-
             @Override
             public void onAnimationRepeat(Animator animation) {
             }
-
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (condition) {
+                if (condition&&imageCondition) {
                     changeImage();
                 }
                 changeCondition();
@@ -128,11 +123,9 @@ public class AroundImageEditText extends FrameLayout{
             @Override
             public void onAnimationStart(Animation animation) {
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 tImageView.setImageResource(secondImage);
@@ -167,20 +160,24 @@ public class AroundImageEditText extends FrameLayout{
             }
             @Override
             public void afterTextChanged(Editable s) {
-                if(editText.getText())
+                if(editText.getText().toString().equals("")){
+                    imageCondition = false;
+                } else {
+                    imageCondition = true;
+                }
             }
         });
-
+        
         tEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-
+                onFocusChanged();
             }
         });
     }
 
-    public void setJudge(){
-        
+    private void onFocusChanged() {
+        moveImage();
     }
 
     private void changeCondition(){
