@@ -8,13 +8,14 @@
         <attr name="aietPaddingLeft" format="dimension|reference"></attr>
         <attr name="aietImageBackground" format="color|reference"></attr>
         <attr name="aietImage" format="reference"></attr>
-        <attr name="aietType">
-            <enum name="" value=""></enum>
-            <enum name="" value=""></enum>
-        </attr>
 
-
-        <attr name="aiet" format=""></attr>
-
+        <!--
+            余裕があれば
+            <attr name="aietType">
+                <enum name="" value=""></enum>
+                <enum name="" value=""></enum>
+            </attr>
+            <attr name="aiet" format=""></attr>
+        -->
     </declare-styleable>
 </resources>
