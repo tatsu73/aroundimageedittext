@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="AroundImageEditText" >
-        <attr name="aietFirstImageBackground" format="color|reference"></attr>
-        <attr name="aietSecondImageBackground" format="color|reference"></attr>
+        <attr name="aietFirstImageBackgroundColor" format="color|reference"></attr>
+        <attr name="aietSecondImageBackgroundColor" format="color|reference"></attr>
         <attr name="aietFirstImage" format="reference"></attr>
         <attr name="aietSecondImage" format="reference"></attr>
 
