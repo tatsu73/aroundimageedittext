@@ -93,7 +93,6 @@ public class AroundImageEditText extends FrameLayout{
         PropertyValuesHolder holderAround = PropertyValuesHolder.ofFloat("rotation", 0f, 360f);
         ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(
                 tImageView, holderX, holderAround);
-
         objectAnimator.setDuration(700);
         objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override
