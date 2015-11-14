@@ -75,12 +75,12 @@ public class AroundImageEditText extends FrameLayout{
             final LayoutParams lp = new LayoutParams(layoutParams);
             lp.gravity =Gravity.CENTER_VERTICAL;
             lp.leftMargin = tImageView.getWidth()/2;
+            //lp.leftMargin = tImageView.getWidth()/2;
             layoutParams = lp;
             setEditText((EditText) child);
         }
         super.addView(child, index, layoutParams);
     }
-
 
     private void moveImage(){
         float toX = tEditText.getWidth();
@@ -97,7 +97,7 @@ public class AroundImageEditText extends FrameLayout{
 
         objectAnimator.setDuration( 700 );
         objectAnimator.start();
-
+        changeCondition();
     }
 
     public void changeImage(Boolean flag){
@@ -107,11 +107,9 @@ public class AroundImageEditText extends FrameLayout{
             @Override
             public void onAnimationStart(Animation animation) {
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
-
             @Override
             public void onAnimationEnd(Animation animation) {
                 tImageView.setImageResource(secondImage);
@@ -121,11 +119,9 @@ public class AroundImageEditText extends FrameLayout{
                     @Override
                     public void onAnimationStart(Animation animation) {
                     }
-
                     @Override
                     public void onAnimationRepeat(Animation animation) {
                     }
-
                     @Override
                     public void onAnimationEnd(Animation animation) {
                     }
@@ -155,14 +151,9 @@ public class AroundImageEditText extends FrameLayout{
         tEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                
+
             }
         });
-    }
-
-    private float getEditTextSize(EditText editText){
-        float editSize = editText.getWidth();
-        return  editSize;
     }
 
     private void changeCondition(){
