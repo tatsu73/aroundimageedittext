@@ -149,6 +149,7 @@ public class AroundImageEditText extends FrameLayout{
         });
         tImageView.startAnimation(anim_out);
     }
+
     private void setEditText(final EditText editText){
         tEditText = editText;
         tEditText.addTextChangedListener(new TextWatcher() {
@@ -167,7 +168,7 @@ public class AroundImageEditText extends FrameLayout{
                 }
             }
         });
-        
+
         tEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -184,7 +185,7 @@ public class AroundImageEditText extends FrameLayout{
         if(condition){
             condition = false;
         } else {
-            condition =true;
+            condition = true;
         }
     }
 }
