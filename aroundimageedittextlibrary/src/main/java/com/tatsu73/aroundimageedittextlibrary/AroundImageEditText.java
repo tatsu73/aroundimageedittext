@@ -123,10 +123,10 @@ public class AroundImageEditText extends FrameLayout{
         objectAnimator.start();
     }
 
-    public void changeImage(){
-        final Animation anim_out = AnimationUtils.loadAnimation(Context, android.R.anim.fade_out);
-        final Animation anim_in  = AnimationUtils.loadAnimation(Context, android.R.anim.fade_in);
-        anim_out.setAnimationListener(new Animation.AnimationListener() {
+    private void changeImage(){
+        final Animation ani_out = AnimationUtils.loadAnimation(Context, android.R.anim.fade_out);
+        final Animation ani_in  = AnimationUtils.loadAnimation(Context, android.R.anim.fade_in);
+        ani_out.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
             }
@@ -138,7 +138,7 @@ public class AroundImageEditText extends FrameLayout{
                 ImageView.setImageResource(secondImage);
                 ImageView.setBackgroundColor(secondBackgroundColor);
                 ImageView.setBackgroundResource(R.drawable.default_second_background);
-                anim_in.setAnimationListener(new Animation.AnimationListener() {
+                ani_in.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
                     }
@@ -151,10 +151,31 @@ public class AroundImageEditText extends FrameLayout{
                     public void onAnimationEnd(Animation animation) {
                     }
                 });
-                ImageView.startAnimation(anim_in);
+                ImageView.startAnimation(ani_in);
             }
         });
-        ImageView.startAnimation(anim_out);
+        ImageView.startAnimation(ani_out);
+    }
+
+    public void setJudge(Boolean imageCondition){
+        EditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (EditText.getText().toString().equals("")) {
+                    imageCondition = false;
+                } else {
+                    imageCondition = true;
+                }
+            }
+        });
     }
 
     private void setEditText(final EditText editText){
@@ -186,6 +207,10 @@ public class AroundImageEditText extends FrameLayout{
 
     private void onFocusChanged() {
         moveImage();
+    }
+
+    private EditText getEditText(){
+        return EditText;
     }
 
     private void changeCondition(){
